@@ -7,7 +7,7 @@ import google.generativeai as genai
 
 # Load environment variables from .env file
 load_dotenv()
-
+api_key = os.getenv("GEMINI_API_KEY")
 
 # Function to combine content
 # def combine_content():
@@ -27,7 +27,7 @@ load_dotenv()
 
 # Function to generate content using Gemini
 def generate_gemini_content(prompt):
-    genai.configure(api_key="AIzaSyBdD_8q4QUUiRGTx-WPJRm6YM4SLGFKMD4")
+    genai.configure(api_key=api_key)
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt + "combine both the trending topics and the gofr documentation contents and give me the captions for the INSTAGRAM POST")
     print("This was called")

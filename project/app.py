@@ -5,9 +5,11 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 from database import save_post, get_posts
 from datetime import datetime
+import os
 
 # Load environment variables from .env file
 load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
 
 # Initialize Flask app and CORS
 app = Flask(__name__)
@@ -15,7 +17,7 @@ CORS(app)
 
 # Function to generate content using Gemini
 def generate_gemini_content(prompt, content_type="email"):
-    genai.configure(api_key="AIzaSyAi8Dux6HX4CaVBtFdkRvEPsoiU_2Fc418")  # Your API Key here
+    genai.configure(api_key=api_key)  # Your API Key here
     model = genai.GenerativeModel("gemini-1.5-flash")
 
     # Generate content based on content type (email or LinkedIn)

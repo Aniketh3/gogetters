@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
-
+api_key = os.getenv("GEMINI_API_KEY")
 app = Flask(__name__)
 
 # Function to generate content using Gemini
 def generate_gemini_content(prompt):
-    genai.configure(api_key=os.getenv("AIzaSyBdD_8q4QUUiRGTx-WPJRm6YM4SLGFKMD4"))
+    genai.configure(api_key=api_key)
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt + " combine both the trending topics and the gofr documentation contents and give me the whole CAPTIONS for the EMAIL to send to the user")
     return response.text
